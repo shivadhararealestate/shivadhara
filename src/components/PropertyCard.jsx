@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import InstagramEmbed from "./InstagramEmbed";
 
 export default function PropertyCard({ property, interactive = true }) {
   return (
     <article className="card">
       <div className="card-media">
-        <img src={property.image} alt="" />
+        <InstagramEmbed url={property.instagram} />
         <span className="card-badge">Premium plot</span>
       </div>
       <div className="card-body">

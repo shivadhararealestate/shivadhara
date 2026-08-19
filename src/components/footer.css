@@ -48,8 +48,38 @@
 
 .socials {
   display: flex;
-  gap: 16px;
+  gap: 10px;
   flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 0;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.social-icon:hover {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+}
+
+.footer-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .footer-bottom {

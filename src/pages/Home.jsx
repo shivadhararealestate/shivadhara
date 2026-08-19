@@ -1,8 +1,34 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PropertyCarousel from "../components/PropertyCarousel";
-import properties from "../data/properties";
+import { supabase } from "../lib/supabaseClient";
 
 export default function Home() {
+  const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const { data, error } = await supabase
+        .from("properties")
+        .select("id, location, area, instagram, dimensions")
+        .order("id", { ascending: true });
+      if (cancelled) return;
+      if (error) {
+        setError(error.message);
+        setLoading(false);
+        return;
+      }
+      setProperties(data || []);
+      setLoading(false);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <div className="page home">
       <section className="hero-landing">
@@ -47,7 +73,15 @@ export default function Home() {
             neighbouring plots stay in view, softly receded.
           </p>
         </div>
-        <PropertyCarousel items={properties} />
+        {loading ? (
+          <p className="carousel-status">Loading featured properties…</p>
+        ) : error ? (
+          <p className="carousel-status carousel-error">
+            We couldn’t load the listings right now. Please try again later.
+          </p>
+        ) : (
+          <PropertyCarousel items={properties} />
+        )}
       </section>
 
       <section className="highlights">

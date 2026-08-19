@@ -1,3 +1,10 @@
+import {
+  InstagramIcon,
+  FacebookIcon,
+  PhoneIcon,
+  MailIcon,
+} from "../components/icons";
+
 export default function Contact() {
   return (
     <div className="page contact-page">
@@ -17,11 +24,17 @@ export default function Contact() {
             <div className="contact-list">
               <div className="contact-item">
                 <span>Phone</span>
-                <a href="tel:+919876543210">+91 98765 43210</a>
+                <a href="tel:+919876543210" className="contact-item-link">
+                  <PhoneIcon size={16} />
+                  +91 98765 43210
+                </a>
               </div>
               <div className="contact-item">
                 <span>Email</span>
-                <a href="mailto:hello@shivadhara.com">hello@shivadhara.com</a>
+                <a href="mailto:hello@shivadhara.com" className="contact-item-link">
+                  <MailIcon size={16} />
+                  hello@shivadhara.com
+                </a>
               </div>
               <div className="contact-item">
                 <span>Hours</span>
@@ -30,9 +43,11 @@ export default function Contact() {
             </div>
             <div className="social-row">
               <a href="#" className="social-link">
+                <InstagramIcon size={16} />
                 Instagram
               </a>
               <a href="#" className="social-link">
+                <FacebookIcon size={16} />
                 Facebook
               </a>
             </div>

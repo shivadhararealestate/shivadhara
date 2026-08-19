@@ -1,4 +1,11 @@
 import { Link } from "react-router-dom";
+import {
+  InstagramIcon,
+  FacebookIcon,
+  LinkedInIcon,
+  PhoneIcon,
+  MailIcon,
+} from "./icons";
 import "./footer.css";
 
 export default function Footer() {
@@ -21,12 +28,24 @@ export default function Footer() {
 
         <div className="footer-col">
           <h5>Contact</h5>
-          <a href="tel:+919876543210">+91 98765 43210</a>
-          <a href="mailto:hello@shivadhara.com">hello@shivadhara.com</a>
+          <a href="tel:+919876543210" className="footer-contact">
+            <PhoneIcon size={16} />
+            +91 98765 43210
+          </a>
+          <a href="mailto:hello@shivadhara.com" className="footer-contact">
+            <MailIcon size={16} />
+            hello@shivadhara.com
+          </a>
           <div className="socials">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">LinkedIn</a>
+            <a href="#" aria-label="Instagram" className="social-icon">
+              <InstagramIcon size={18} />
+            </a>
+            <a href="#" aria-label="Facebook" className="social-icon">
+              <FacebookIcon size={18} />
+            </a>
+            <a href="#" aria-label="LinkedIn" className="social-icon">
+              <LinkedInIcon size={18} />
+            </a>
           </div>
         </div>
       </div>
