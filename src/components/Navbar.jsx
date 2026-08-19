@@ -21,6 +21,14 @@ export default function Navbar() {
             Home
           </NavLink>
           <NavLink
+            to="/properties"
+            className={({ isActive }) =>
+              isActive ? "is-active nav-keep" : "nav-keep"
+            }
+          >
+            Properties
+          </NavLink>
+          <NavLink
             to="/contact"
             className={({ isActive }) => (isActive ? "is-active" : undefined)}
           >

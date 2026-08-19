@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import PropertyCard from "./PropertyCard";
 
@@ -25,7 +26,7 @@ export default function PropertyCarousel({ items }) {
 
   useEffect(() => {
     if (paused || items.length < 2) return undefined;
-    const id = window.setInterval(next, 5000);
+    const id = window.setInterval(next, 500000000);
     return () => window.clearInterval(id);
   }, [paused, next, items.length]);
 
@@ -106,39 +107,45 @@ export default function PropertyCarousel({ items }) {
         })}
       </div>
 
-      <div className="carousel-controls">
-        <button
-          type="button"
-          className="carousel-btn prev"
-          onClick={prev}
-          aria-label="Previous property"
-        >
-          ‹
-        </button>
-        <div
-          className="carousel-dots"
-          role="tablist"
-          aria-label="Property slides"
-        >
-          {items.map((property, i) => (
-            <button
-              key={property.id}
-              type="button"
-              className={`carousel-dot ${i === index ? "is-active" : ""}`}
-              aria-label={`Show ${property.location}`}
-              aria-current={i === index}
-              onClick={() => setIndex(i)}
-            />
-          ))}
+      <div className="carousel-bar">
+        <div className="carousel-bar-spacer" aria-hidden="true" />
+        <div className="carousel-controls">
+          <button
+            type="button"
+            className="carousel-btn prev"
+            onClick={prev}
+            aria-label="Previous property"
+          >
+            ‹
+          </button>
+          <div
+            className="carousel-dots"
+            role="tablist"
+            aria-label="Property slides"
+          >
+            {items.map((property, i) => (
+              <button
+                key={property.id}
+                type="button"
+                className={`carousel-dot ${i === index ? "is-active" : ""}`}
+                aria-label={`Show ${property.location}`}
+                aria-current={i === index}
+                onClick={() => setIndex(i)}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            className="carousel-btn next"
+            onClick={next}
+            aria-label="Next property"
+          >
+            ›
+          </button>
         </div>
-        <button
-          type="button"
-          className="carousel-btn next"
-          onClick={next}
-          aria-label="Next property"
-        >
-          ›
-        </button>
+        <Link to="/properties" className="btn btn-dark carousel-all">
+          View all listings
+        </Link>
       </div>
     </section>
   );

@@ -14,7 +14,8 @@ export default function Home() {
       const { data, error } = await supabase
         .from("properties")
         .select("id, location, area, instagram, dimensions")
-        .order("id", { ascending: true });
+        .order("id", { ascending: true })
+        .limit(6);
       if (cancelled) return;
       if (error) {
         setError(error.message);

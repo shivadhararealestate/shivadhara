@@ -23,6 +23,7 @@ export default function Footer() {
         <div className="footer-col">
           <h5>Visit</h5>
           <Link to="/">Featured listings</Link>
+          <Link to="/properties">All properties</Link>
           <Link to="/contact">Book a consultation</Link>
         </div>
 

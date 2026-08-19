@@ -95,7 +95,7 @@
     display: none;
   }
 
-  .nav-links a:not(.nav-cta) {
+  .nav-links a:not(.nav-cta):not(.nav-keep) {
     display: none;
   }
 }
