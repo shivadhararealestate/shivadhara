@@ -20,25 +20,32 @@ export default function Contact() {
 
         <div className="contact-grid">
           <section className="contact-card">
-            <h2>Studio</h2>
+            <h2>Office</h2>
             <div className="contact-list">
               <div className="contact-item">
                 <span>Phone</span>
-                <a href="tel:+919876543210" className="contact-item-link">
+                <a href="tel:+917983708067" className="contact-item-link">
                   <PhoneIcon size={16} />
-                  +91 98765 43210
+                  +91 79837 08067
                 </a>
               </div>
               <div className="contact-item">
                 <span>Email</span>
-                <a href="mailto:hello@shivadhara.com" className="contact-item-link">
+                <a
+                  href="mailto:shivadhararealestate@gmail.com"
+                  className="contact-item-link"
+                >
                   <MailIcon size={16} />
-                  hello@shivadhara.com
+                  shivadhararealestate@gmail.com
                 </a>
               </div>
               <div className="contact-item">
-                <span>Hours</span>
-                <p>Mon–Sat, 10:00–18:00 IST</p>
+                <span>Address</span>
+                <p>
+                  Shivadhara RealEstates, <br />
+                  Nehru Colony, <br />
+                  Dehradun, Uttarakhand 248001
+                </p>
               </div>
             </div>
             <div className="social-row">

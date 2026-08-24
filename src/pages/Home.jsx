@@ -34,7 +34,7 @@ export default function Home() {
     <div className="page home">
       <section className="hero-landing">
         <div className="hero-inner">
-          <p className="eyebrow">Shivadhara Estates</p>
+          <p className="eyebrow">Shivadhara RealEstates</p>
           <h1>Land and homes, chosen with care.</h1>
           <p>
             Premium plots and residences in well-connected neighbourhoods,
@@ -48,7 +48,7 @@ export default function Home() {
               Talk to an advisor
             </Link>
           </div>
-          <div className="hero-stats">
+          {/* <div className="hero-stats">
             <div>
               <strong>12+</strong>
               <span>Years of local expertise</span>
@@ -57,11 +57,7 @@ export default function Home() {
               <strong>180+</strong>
               <span>Families settled</span>
             </div>
-            <div>
-              <strong>3</strong>
-              <span>Cities we serve</span>
-            </div>
-          </div>
+          </div> */}
         </div>
       </section>
 

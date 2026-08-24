@@ -17,10 +17,7 @@ export default function PropertyCarousel({ items }) {
   );
 
   const next = useCallback(() => {
-    setIndex((i) => {
-      console.log("Shub", i, (i + 1) % items.length);
-      return (i + 1) % items.length;
-    });
+    setIndex((i) => (i + 1) % items.length);
   }, [items.length]);
 
   const prev = useCallback(() => {
