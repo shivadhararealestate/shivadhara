@@ -26,7 +26,7 @@ export default function PropertyCarousel({ items }) {
 
   useEffect(() => {
     if (paused || items.length < 2) return undefined;
-    const id = window.setInterval(next, 500000000);
+    const id = window.setInterval(next, 3000);
     return () => window.clearInterval(id);
   }, [paused, next, items.length]);
 

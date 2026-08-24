@@ -13,10 +13,10 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-inner">
         <div className="footer-brand">
-          <h4>Shivadhara Estates</h4>
+          <h4>Shivadhara RealEstates</h4>
           <p>
-            Thoughtful property sales across Bengaluru, Chennai, and Hyderabad —
-            with local knowledge you can rely on.
+            Thoughtful property sales across Uttarakhand — with local knowledge
+            you can rely on.
           </p>
         </div>
 
@@ -29,29 +29,40 @@ export default function Footer() {
 
         <div className="footer-col">
           <h5>Contact</h5>
-          <a href="tel:+919876543210" className="footer-contact">
+          <a href="tel:+917983708067" className="footer-contact">
             <PhoneIcon size={16} />
-            +91 98765 43210
+            +91 79837 08067
           </a>
-          <a href="mailto:hello@shivadhara.com" className="footer-contact">
+          <a
+            href="mailto:shivadhararealestate@gmail.com"
+            className="footer-contact"
+          >
             <MailIcon size={16} />
-            hello@shivadhara.com
+            shivadhararealestate@gmail.com
           </a>
           <div className="socials">
-            <a href="#" aria-label="Instagram" className="social-icon">
+            <a
+              href="https://www.instagram.com/shivadhara.realestate/"
+              aria-label="Instagram"
+              className="social-icon"
+              target="_blank"
+            >
               <InstagramIcon size={18} />
             </a>
-            <a href="#" aria-label="Facebook" className="social-icon">
+            <a
+              href="https://www.facebook.com/share/1BkmpuzTNn/"
+              aria-label="Facebook"
+              className="social-icon"
+              target="_blank"
+            >
               <FacebookIcon size={18} />
-            </a>
-            <a href="#" aria-label="LinkedIn" className="social-icon">
-              <LinkedInIcon size={18} />
             </a>
           </div>
         </div>
       </div>
       <p className="footer-bottom">
-        © {new Date().getFullYear()} Shivadhara Estates. All rights reserved.
+        © {new Date().getFullYear()} Shivadhara RealEstates. All rights
+        reserved.
       </p>
     </footer>
   );
