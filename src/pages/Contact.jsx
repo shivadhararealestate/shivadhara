@@ -1,11 +1,68 @@
+import { useState } from "react";
 import {
   InstagramIcon,
   FacebookIcon,
   PhoneIcon,
   MailIcon,
 } from "../components/icons";
+import { supabase } from "../lib/supabaseClient";
+
+function collectBrowserMetadata() {
+  const nav = navigator;
+  const screen = window.screen;
+  return {
+    user_agent: nav.userAgent || null,
+    language: nav.language || nav.userLanguage || null,
+    platform: nav.platform || null,
+    screen: screen
+      ? `${screen.width}x${screen.height}`
+      : `${window.innerWidth}x${window.innerHeight}`,
+    viewport: `${window.innerWidth}x${window.innerHeight}`,
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+    referrer: document.referrer || null,
+    page_url: window.location.href,
+  };
+}
 
 export default function Contact() {
+  const [status, setStatus] = useState("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setStatus("submitting");
+    setErrorMsg("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get("name") || "").trim(),
+      email: String(formData.get("email") || "").trim(),
+      interest: String(formData.get("interest") || "").trim() || null,
+      message: String(formData.get("message") || "").trim() || null,
+      ...collectBrowserMetadata(),
+    };
+
+    if (!payload.name || !payload.email) {
+      setStatus("error");
+      setErrorMsg("Please provide your name and email.");
+      return;
+    }
+
+    const { error } = await supabase.from("enquiries").insert([payload]);
+
+    if (error) {
+      setStatus("error");
+      setErrorMsg(
+        "We couldn’t send your message right now. Please try again or email us directly.",
+      );
+      return;
+    }
+
+    setStatus("success");
+    form.reset();
+  }
+
   return (
     <div className="page contact-page">
       <div className="container">
@@ -62,11 +119,7 @@ export default function Contact() {
 
           <section className="contact-form">
             <h2>Send a message</h2>
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-              }}
-            >
+            <form onSubmit={handleSubmit}>
               <div className="form-row">
                 <label htmlFor="name">Full name</label>
                 <input
@@ -75,6 +128,7 @@ export default function Contact() {
                   type="text"
                   autoComplete="name"
                   required
+                  disabled={status === "submitting"}
                 />
               </div>
               <div className="form-row">
@@ -85,6 +139,7 @@ export default function Contact() {
                   type="email"
                   autoComplete="email"
                   required
+                  disabled={status === "submitting"}
                 />
               </div>
               <div className="form-row">
@@ -94,6 +149,7 @@ export default function Contact() {
                   name="interest"
                   type="text"
                   placeholder="City, plot size, or listing"
+                  disabled={status === "submitting"}
                 />
               </div>
               <div className="form-row">
@@ -102,11 +158,27 @@ export default function Contact() {
                   id="message"
                   name="message"
                   placeholder="Tell us what you’re looking for"
+                  disabled={status === "submitting"}
                 />
               </div>
-              <button type="submit" className="btn btn-primary">
-                Request a callback
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={status === "submitting"}
+              >
+                {status === "submitting" ? "Sending…" : "Request a callback"}
               </button>
+              {status === "success" && (
+                <p className="form-feedback form-feedback-success">
+                  Thank you — your enquiry has been sent. We’ll be in touch
+                  within one business day.
+                </p>
+              )}
+              {status === "error" && (
+                <p className="form-feedback form-feedback-error">
+                  {errorMsg}
+                </p>
+              )}
               <p className="form-note">
                 This form is for enquiries only. We’ll never share your details.
               </p>
